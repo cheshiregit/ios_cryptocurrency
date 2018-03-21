@@ -14,6 +14,8 @@
 		305DEC662062AB320089217A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 305DEC652062AB320089217A /* Assets.xcassets */; };
 		305DEC692062AB320089217A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305DEC672062AB320089217A /* LaunchScreen.storyboard */; };
 		305DEC742062AB330089217A /* CryptoCoinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DEC732062AB330089217A /* CryptoCoinsTests.swift */; };
+		305DEC802062CB850089217A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DEC7E2062CB850089217A /* CustomTableViewCell.swift */; };
+		305DEC812062CB850089217A /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305DEC7F2062CB850089217A /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		305DEC6F2062AB330089217A /* CryptoCoinsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCoinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		305DEC732062AB330089217A /* CryptoCoinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCoinsTests.swift; sourceTree = "<group>"; };
 		305DEC752062AB330089217A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		305DEC7E2062CB850089217A /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		305DEC7F2062CB850089217A /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				305DEC672062AB320089217A /* LaunchScreen.storyboard */,
 				305DEC6A2062AB320089217A /* Info.plist */,
 				305DEC622062AB320089217A /* CryptoCoins.xcdatamodeld */,
+				305DEC7E2062CB850089217A /* CustomTableViewCell.swift */,
+				305DEC7F2062CB850089217A /* CustomTableViewCell.xib */,
 			);
 			path = CryptoCoins;
 			sourceTree = "<group>";
@@ -184,6 +190,7 @@
 			files = (
 				305DEC692062AB320089217A /* LaunchScreen.storyboard in Resources */,
 				305DEC662062AB320089217A /* Assets.xcassets in Resources */,
+				305DEC812062CB850089217A /* CustomTableViewCell.xib in Resources */,
 				305DEC612062AB320089217A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +211,7 @@
 			files = (
 				305DEC5E2062AB320089217A /* ViewController.swift in Sources */,
 				305DEC5C2062AB320089217A /* AppDelegate.swift in Sources */,
+				305DEC802062CB850089217A /* CustomTableViewCell.swift in Sources */,
 				305DEC642062AB320089217A /* CryptoCoins.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
