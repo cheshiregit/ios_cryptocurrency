@@ -15,6 +15,10 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinPrice: UILabel!
+    @IBOutlet weak var label24h: UILabel!
+    @IBOutlet weak var label7d: UILabel!
+    @IBOutlet weak var value24h: UILabel!
+    @IBOutlet weak var value7d: UILabel!
     
     
     override func awakeFromNib() {
