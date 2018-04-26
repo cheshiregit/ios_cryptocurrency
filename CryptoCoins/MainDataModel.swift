@@ -8,14 +8,28 @@
 
 import UIKit
 
-struct DataModel: Codable {
-    var id: String
-    var price: String
-    var change24h: String
-    var change7d: String
+class DataModel: Decodable {
+    var id: String = ""
+    var price: String = ""
+    var change24h: String = ""
+    var change7d: String = ""
+    var symbol: String = ""
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case price = "price_usd"
+        case change24h = "percent_change_24h"
+        case change7d = "percent_change_7d"
+        case symbol = "symbol"
+    }
 }
 
 /*
+ 
+ let id = item["id"] as! String
+ let price = item["price_usd"] as! String
+ let change24h = item["percent_change_24h"] as! String
+ let change7d = item["percent_change_7d"] as! String
+ 
 class MainDataModel {
     var id: String
     var price: String

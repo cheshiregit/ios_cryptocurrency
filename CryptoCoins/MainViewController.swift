@@ -15,33 +15,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let cellIdentifier = "xibCell"
     
-    var dataModel: DataModel?
+    var currency = [DataModel]()
+    
+    var refresh: UIRefreshControl!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        refreshData()
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
-        //refreshData()
+        refresh = UIRefreshControl()
+        
+        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refresh
+        refreshData()
     }
 
-    func refreshData() {
-        let urlString = "https://api.coinmarketcap.com/v1/ticker/bitcoin/"
+    @objc func refreshData() {
+        let urlString = "https://api.coinmarketcap.com/v1/ticker/?limit=10"
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with:url!) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
-            } else {
-                do {
-                    let parsedData = try JSONSerialization.jsonObject(with: data!) as! [[String : Any]]
-                    for item in parsedData
-                    {
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let currentData = try JSONDecoder().decode([DataModel].self, from: data)
+                //let parsedData = try JSONSerialization.jsonObject(with: data!) as! [[String : Any]]
+                DispatchQueue.main.async {
+                    //print(articlesData)
+                    self.currency = currentData
+                    
+                    self.tableView.reloadData()
+                    self.refresh.endRefreshing()
+                }
+                    
+                        /*
                         let id = item["id"] as! String
                         let price = item["price_usd"] as! String
                         let change24h = item["percent_change_24h"] as! String
@@ -51,27 +67,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         self.dataModel?.price = price
                         self.dataModel?.change24h = change24h
                         self.dataModel?.change7d = change7d
-                    }
+                        */
                     
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
-            }.resume()
+        }.resume()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return currency.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
-        cell.coinImage.image = UIImage(named: "btc")
-        cell.coinName.text = dataModel?.id
-        cell.coinPrice.text = dataModel?.price
-        cell.label24h.text = dataModel?.change24h
-        cell.label7d.text = dataModel?.change7d
-        print("cell")
+        //cell.coinImage.image = UIImage(named: "btc_2")
+        cell.coinImage.image = UIImage(named: currency[indexPath.row].symbol.lowercased())
+        cell.coinName.text = currency[indexPath.row].id
+        cell.coinPrice.text = currency[indexPath.row].price
+        cell.value24h.text = currency[indexPath.row].change24h
+        cell.value7d.text = currency[indexPath.row].change7d
         cell.selectionStyle = .none
         return cell
     }
