@@ -56,19 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.tableView.reloadData()
                     self.refresh.endRefreshing()
                 }
-                    
-                        /*
-                        let id = item["id"] as! String
-                        let price = item["price_usd"] as! String
-                        let change24h = item["percent_change_24h"] as! String
-                        let change7d = item["percent_change_7d"] as! String
-                        print("id: \(id), price: \(price), 24h: \(change24h), 7d: \(change7d)")
-                        self.dataModel?.id = id
-                        self.dataModel?.price = price
-                        self.dataModel?.change24h = change24h
-                        self.dataModel?.change7d = change7d
-                        */
-                    
+                
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -83,7 +71,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
         //cell.coinImage.image = UIImage(named: "btc_2")
         cell.coinImage.image = UIImage(named: currency[indexPath.row].symbol.lowercased())
-        cell.coinName.text = currency[indexPath.row].id
+        cell.coinName.text = currency[indexPath.row].symbol + " | " + currency[indexPath.row].name
         cell.coinPrice.text = currency[indexPath.row].price
         cell.value24h.text = currency[indexPath.row].change24h
         cell.value7d.text = currency[indexPath.row].change7d
