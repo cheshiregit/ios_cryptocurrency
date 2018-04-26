@@ -72,8 +72,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //cell.coinImage.image = UIImage(named: "btc_2")
         cell.coinImage.image = UIImage(named: currency[indexPath.row].symbol.lowercased())
         cell.coinName.text = currency[indexPath.row].symbol + " | " + currency[indexPath.row].name
-        cell.coinPrice.text = currency[indexPath.row].price
+        cell.coinPrice.text = currency[indexPath.row].price + " $"
+        if currency[indexPath.row].change24h.hasPrefix("-") {
+            cell.value24h.textColor = UIColor.red } else {
+            cell.value24h.textColor = UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1)
+        }
         cell.value24h.text = currency[indexPath.row].change24h
+        if currency[indexPath.row].change7d.hasPrefix("-") {
+            cell.value7d.textColor = UIColor.red } else {
+            cell.value7d.textColor = UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1)
+        }
         cell.value7d.text = currency[indexPath.row].change7d
         cell.selectionStyle = .none
         return cell
