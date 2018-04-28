@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30185CD52094915500567BCA /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30185CD42094915500567BCA /* RealmModel.swift */; };
 		305DEC5C2062AB320089217A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DEC5B2062AB320089217A /* AppDelegate.swift */; };
 		305DEC5E2062AB320089217A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DEC5D2062AB320089217A /* MainViewController.swift */; };
 		305DEC612062AB320089217A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305DEC5F2062AB320089217A /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		305DEC802062CB850089217A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DEC7E2062CB850089217A /* CustomTableViewCell.swift */; };
 		305DEC812062CB850089217A /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305DEC7F2062CB850089217A /* CustomTableViewCell.xib */; };
 		30A3DFE2207E5F7C0032B912 /* MainDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3DFE1207E5F7C0032B912 /* MainDataModel.swift */; };
-		30F270992087B2C000D5A0DC /* MainModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F270982087B2C000D5A0DC /* MainModelController.swift */; };
 		8B0ADF9670E4CA029F18DDF2 /* Pods_CryptoCoins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408D12FCFDA09945AEEC7AE8 /* Pods_CryptoCoins.framework */; };
 		B1EA10F2CF46E7B7BAC913A8 /* Pods_CryptoCoinsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A315258FB710596EF7F0ABC /* Pods_CryptoCoinsTests.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30185CD42094915500567BCA /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		305DEC582062AB320089217A /* CryptoCoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		305DEC5B2062AB320089217A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		305DEC5D2062AB320089217A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		305DEC7E2062CB850089217A /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		305DEC7F2062CB850089217A /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		30A3DFE1207E5F7C0032B912 /* MainDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataModel.swift; sourceTree = "<group>"; };
-		30F270982087B2C000D5A0DC /* MainModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModelController.swift; sourceTree = "<group>"; };
 		3A315258FB710596EF7F0ABC /* Pods_CryptoCoinsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoCoinsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		408D12FCFDA09945AEEC7AE8 /* Pods_CryptoCoins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoCoins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5C07214DA6207261C32D50 /* Pods-CryptoCoins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoCoins.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoCoins/Pods-CryptoCoins.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				305DEC7E2062CB850089217A /* CustomTableViewCell.swift */,
 				305DEC7F2062CB850089217A /* CustomTableViewCell.xib */,
 				30A3DFE1207E5F7C0032B912 /* MainDataModel.swift */,
-				30F270982087B2C000D5A0DC /* MainModelController.swift */,
+				30185CD42094915500567BCA /* RealmModel.swift */,
 			);
 			path = CryptoCoins;
 			sourceTree = "<group>";
@@ -358,10 +358,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				305DEC5E2062AB320089217A /* MainViewController.swift in Sources */,
+				30185CD52094915500567BCA /* RealmModel.swift in Sources */,
 				305DEC5C2062AB320089217A /* AppDelegate.swift in Sources */,
 				305DEC802062CB850089217A /* CustomTableViewCell.swift in Sources */,
 				30A3DFE2207E5F7C0032B912 /* MainDataModel.swift in Sources */,
-				30F270992087B2C000D5A0DC /* MainModelController.swift in Sources */,
 				305DEC642062AB320089217A /* CryptoCoins.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

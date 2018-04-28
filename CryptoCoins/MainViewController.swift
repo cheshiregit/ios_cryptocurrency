@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -19,7 +20,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var refresh: UIRefreshControl!
     
+    //
+    var realm : Realm!
     
+    var coinsList: Results<RealmModel> {
+        get {
+            return realm.objects(RealmModel.self)
+        }
+    }
+    
+    var realmModelItem = [RealmModel]()
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +45,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refresh
         refreshData()
+        
+        //
+        realm = try! Realm()
+        //
     }
 
     @objc func refreshData() {
@@ -42,17 +57,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         URLSession.shared.dataTask(with:url!) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
+                print("No Internet")
             }
             
             guard let data = data else { return }
             
             do {
-                let currentData = try JSONDecoder().decode([DataModel].self, from: data)
+                //let currentData = try JSONDecoder().decode([DataModel].self, from: data)
                 //let parsedData = try JSONSerialization.jsonObject(with: data!) as! [[String : Any]]
+                let currentData = try JSONDecoder().decode([RealmModel].self, from: data)
+                
                 DispatchQueue.main.async {
-                    //print(articlesData)
-                    self.currency = currentData
+                    //self.currency = currentData
+                    //
+                    self.realmModelItem = currentData
                     
+                    print(currentData)
+                    print(self.realmModelItem)
+                    
+                    try! self.realm.write({
+                        //self.realm.add(self.realmModelItem)
+                        self.realm.add(self.realmModelItem, update: true)
+                    })
+                    
+                    //
                     self.tableView.reloadData()
                     self.refresh.endRefreshing()
                 }
@@ -61,15 +89,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 print(error.localizedDescription)
             }
         }.resume()
+        print(Realm.Configuration.defaultConfiguration.description)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currency.count
+        //return currency.count
+        return coinsList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
-        //cell.coinImage.image = UIImage(named: "btc_2")
+        
+        //
+        let item = coinsList[indexPath.row]
+        
+        cell.coinImage.image = UIImage(named: item.symbol.lowercased())
+        print(item.symbol)
+        cell.coinName.text = item.symbol + " | " + item.name
+        cell.coinPrice.text = item.price + " $"
+        if item.change24h.hasPrefix("-") {
+            cell.value24h.textColor = UIColor.red } else {
+            cell.value24h.textColor = UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1)
+        }
+        cell.value24h.text = item.change24h
+        if item.change7d.hasPrefix("-") {
+            cell.value7d.textColor = UIColor.red } else {
+            cell.value7d.textColor = UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1)
+        }
+        cell.value7d.text = item.change7d
+ 
+        //
+        /*
         cell.coinImage.image = UIImage(named: currency[indexPath.row].symbol.lowercased())
         cell.coinName.text = currency[indexPath.row].symbol + " | " + currency[indexPath.row].name
         cell.coinPrice.text = currency[indexPath.row].price + " $"
@@ -83,6 +133,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.value7d.textColor = UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1)
         }
         cell.value7d.text = currency[indexPath.row].change7d
+        */
         cell.selectionStyle = .none
         return cell
     }
